@@ -64,6 +64,11 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <a href="{{url('/register')}}" class="text-right">戻る</a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
