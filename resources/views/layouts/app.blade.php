@@ -60,7 +60,7 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <a href="{{url('/item/new')}}" class="dropdown-item">
+                                    <a href="{{url('create')}}" class="dropdown-item">
                                         商品新規登録
                                     </a>
 
