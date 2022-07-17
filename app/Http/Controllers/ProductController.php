@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
+    // 商品登録画面表示
     public function create()
     {
         return view('product_new');
     }
 
-    public function item(Request $request)
+    // 商品登録処理
+    public function item(ProductRequest $request)
     {
         $product = new Product;
 
@@ -24,7 +27,8 @@ class ProductController extends Controller
         $product->comment = $request->input('comment');
         $product->img_path = $request->input('img_path');
         
-        $product->save();
+        Product::create($product);
+        // $product->save();
         \Session::flash('err_msg','商品登録に成功しました。');
         return redirect('product_new');
     }

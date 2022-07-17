@@ -9,6 +9,7 @@ use App\Models\Company;
 class Product extends Model
 {
     protected $fillable = [
+        'user_id',
         'product_name',
         'price',
         'stock',

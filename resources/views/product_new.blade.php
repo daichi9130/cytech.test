@@ -16,7 +16,7 @@
                 </div>
 
                 <div>
-                    <label>
+                    <!-- <label>
                         メーカー
                         <select name="company_name">
                             <option value>メーカー選択</option>
@@ -24,7 +24,7 @@
                             <option value="メーカー2">メーカー2</option>
                             <option value="メーカー3">メーカー3</option>
                         </select>
-                    </label>
+                    </label> -->
                 </div>
 
                 <div>
@@ -48,12 +48,12 @@
                     </label>
                 </div>
 
-                <div>
+                <!-- <div>
                     <label>
                         商品画像
                         <input type="file" name="img_path">
                     </label>
-                </div>
+                </div> -->
 
                 <button type="submit">送信する</button>
             </form>
