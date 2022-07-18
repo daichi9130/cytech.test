@@ -5,18 +5,18 @@
     <div class="row">
         <div class="col-md-8">
             <p>商品新規登録</p>
-            <form method="POST" action="{{route('item')}}">
+            <form method="POST" action="{{route('store')}}">
                 @csrf
 
                 <div>
                     <label>
                         商品名
-                        <input type="text" name="product_name">
+                        <input type="text" name="product_name" value="">
                     </label>
                 </div>
 
                 <div>
-                    <!-- <label>
+                    <label>
                         メーカー
                         <select name="company_name">
                             <option value>メーカー選択</option>
@@ -24,36 +24,36 @@
                             <option value="メーカー2">メーカー2</option>
                             <option value="メーカー3">メーカー3</option>
                         </select>
-                    </label> -->
+                    </label>
                 </div>
 
                 <div>
                     <label>
                         価格
-                        <input type="text" name="price">
+                        <input type="text" name="price" value="">
                     </label>
                 </div>
 
                 <div>
                     <label>
                         在庫数
-                        <input type="text" name="stock">
+                        <input type="text" name="stock" value="">
                     </label>
                 </div>
 
                 <div>
                     <label>
                         コメント
-                        <textarea name="comment" cols="30" rows="3"></textarea>
+                        <textarea name="comment" cols="30" rows="3" value=""></textarea>
                     </label>
                 </div>
 
-                <!-- <div>
+                <div>
                     <label>
                         商品画像
-                        <input type="file" name="img_path">
+                        <input type="file" name="img_path" value="">
                     </label>
-                </div> -->
+                </div>
 
                 <button type="submit">送信する</button>
             </form>

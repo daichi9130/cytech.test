@@ -18,8 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 // 商品一覧画面を表示
-Route::get('index', 'HomeController@index')->name('index');
+Route::get('index', 'ProductController@index')->name('index');
 // 商品登録画面を表示
 Route::get('create','ProductController@create')->name('create');
 // 商品登録
-Route::post('item','ProductController@item')->name('item');
+Route::post('store','ProductController@store')->name('store');

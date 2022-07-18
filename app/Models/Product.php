@@ -8,8 +8,10 @@ use App\Models\Company;
 
 class Product extends Model
 {
+    // $table変数にmigrationsにあるテーブルを指定しモデルに関連付ける
+    protected $table = 'products';
+    
     protected $fillable = [
-        'user_id',
         'product_name',
         'price',
         'stock',
