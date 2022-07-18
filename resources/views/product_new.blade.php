@@ -18,11 +18,13 @@
                 <div>
                     <label>
                         メーカー
-                        <select name="company_name">
+                        <select name="company_id">
                             <option value>メーカー選択</option>
-                            <option value="メーカー1">メーカー1</option>
-                            <option value="メーカー2">メーカー2</option>
-                            <option value="メーカー3">メーカー3</option>
+                            <option value="1">有限会社 笹田</option>
+                            <option value="2">有限会社 山岸</option>
+                            <option value="3">株式会社 吉田</option>
+                            <option value="4">有限会社 高橋</option>
+                            <option value="5">株式会社 山田</option>
                         </select>
                     </label>
                 </div>

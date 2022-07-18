@@ -17,6 +17,7 @@ class Product extends Model
         'stock',
         'comment',
         'img_path',
+        'company_id'
     ];
     public function sales()
     {
