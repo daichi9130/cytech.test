@@ -25,15 +25,23 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    // 商品一覧画面表示
     public function index()
     {
-        return view('home');
+        $products = Product::all();
+        return view('home',['products' => $products]);
     }
 
+    // 商品詳細画面表示
+    public function show($id)
+    {
+        $product = Product::find($id);
+        return view('productshow',['product' => $product]);
+    }
+    
     // 商品登録画面表示
     public function create()
     {
-        
         return view('product_new');
     }
 
