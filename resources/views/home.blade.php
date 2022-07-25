@@ -2,22 +2,22 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <table>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="mx-auto">
                 <tr>
-                    <th>id</th>
-                    <th>商品画像</th>
-                    <th>商品名</th>
-                    <th>価格</th>
-                    <th>在庫数</th>
-                    <th>メーカー名</th>
-                    <th></th>
+                    <th style="width: 10%">id</th>
+                    <th style="width: 20%">商品画像</th>
+                    <th style="width: 20%">商品名</th>
+                    <th style="width: 10%">価格</th>
+                    <th style="width: 10%">在庫数</th>
+                    <th style="width: 20%">メーカー名</th>
+                    <th style="width: 10%"></th>
                 </tr>
                 @foreach($products as $product)
                 <tr>
                     <td>{{ $product->id }}</td>
-                    <td>{{ $product->img_path }}</td>
+                    <td><img src="{{ asset('image/'.$product->img_path) }}" alt="写真" width="50" height="50"></td>
                     <td>{{ $product->product_name }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->stock }}</td>
@@ -32,7 +32,7 @@
 @endsection
 
 
-<div class="card">
+<!-- <div class="card">
                 <div class="card-header">商品一覧</div>
 
                 <div class="card-body">
@@ -44,4 +44,4 @@
 
                     You are logged in!
                 </div>
-            </div>
+            </div> -->

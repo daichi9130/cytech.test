@@ -21,6 +21,10 @@ Auth::routes();
 Route::get('index', 'ProductController@index')->name('index');
 // 商品詳細画面を表示
 Route::get('show/{id}', 'ProductController@show')->name('show');
+// 商品編集画面を表示
+Route::get('edit/{id}', 'ProductController@edit')->name('edit');
+// 商品編集(更新)
+Route::post('update/{id}', 'ProductController@update')->name('update');
 // 商品登録画面を表示
 Route::get('create','ProductController@create')->name('create');
 // 商品登録

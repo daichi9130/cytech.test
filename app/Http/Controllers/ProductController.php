@@ -38,7 +38,37 @@ class ProductController extends Controller
         $product = Product::find($id);
         return view('productshow',['product' => $product]);
     }
-    
+
+    // 商品編集画面表示
+    public function edit($id)
+    {
+        $product = Product::find($id);
+        return view('product_edit',['product' => $product]);
+    }
+
+    // 商品編集処理
+    public function update(ProductRequest $request, $id)
+    {
+        \DB::beginTransaction();
+        try {
+            $product = Product::find($id);
+            $product->fill([
+                'product_name' => $request->product_name,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'comment' => $request->comment,
+                'img_path' => $request->img_path,
+                'company_id' => $request->company_id
+        ]);
+               $blog->save();
+               DB::commit();
+       } catch (Throwable $e) {
+                abort(500);
+                DB::rollBack();
+       }
+        return redirect('edit/{id}');
+    }
+
     // 商品登録画面表示
     public function create()
     {
