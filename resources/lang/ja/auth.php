@@ -15,5 +15,6 @@ return [
 
     'failed' => 'ログインできません。入力した情報に誤りが無いか確認してください。',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    
 
 ];
