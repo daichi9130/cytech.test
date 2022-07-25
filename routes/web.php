@@ -29,3 +29,5 @@ Route::post('update/{id}', 'ProductController@update')->name('update');
 Route::get('create','ProductController@create')->name('create');
 // 商品登録
 Route::post('store','ProductController@store')->name('store');
+// 商品削除
+Route::post('destroy/{id}','ProductController@destroy')->name('destroy');

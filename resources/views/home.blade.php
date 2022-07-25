@@ -6,12 +6,13 @@
         <div class="col-md-12">
             <table class="mx-auto">
                 <tr>
-                    <th style="width: 10%">id</th>
+                    <th style="width: 5%">id</th>
                     <th style="width: 20%">商品画像</th>
-                    <th style="width: 20%">商品名</th>
+                    <th style="width: 15%">商品名</th>
                     <th style="width: 10%">価格</th>
                     <th style="width: 10%">在庫数</th>
                     <th style="width: 20%">メーカー名</th>
+                    <th style="width: 10%"></th>
                     <th style="width: 10%"></th>
                 </tr>
                 @foreach($products as $product)
@@ -23,6 +24,12 @@
                     <td>{{ $product->stock }}</td>
                     <td>{{ $product->company->company_name }}</td>
                     <td><a href="show/{{ $product->id }}" class="btn btn-primary">詳細</a></td>
+                    <td>
+                        <form method="POST" action="{{ route('destroy', $product->id) }}">
+                        @csrf
+                            <button type="submit" class="btn btn-danger">削除</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </table>

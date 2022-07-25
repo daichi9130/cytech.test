@@ -49,10 +49,11 @@ class ProductController extends Controller
     // 商品編集処理
     public function update(ProductRequest $request, $id)
     {
+        $product = Product::find($id);
         \DB::beginTransaction();
         try {
-            $product = Product::find($id);
             $product->fill([
+                'id' => $request->id,
                 'product_name' => $request->product_name,
                 'price' => $request->price,
                 'stock' => $request->stock,
@@ -60,7 +61,7 @@ class ProductController extends Controller
                 'img_path' => $request->img_path,
                 'company_id' => $request->company_id
         ]);
-               $blog->save();
+               $product->save();
                DB::commit();
        } catch (Throwable $e) {
                 abort(500);
@@ -94,6 +95,14 @@ class ProductController extends Controller
             DB::rollBack();
        }
        return redirect('create');
+    }
+
+    // 商品削除
+    public function destroy($id)
+    {
+        $product = Product::find($id);
+        $product->delete();
+        return redirect('index');
     }
 }
 
