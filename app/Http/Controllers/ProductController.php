@@ -26,9 +26,13 @@ class ProductController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     // 商品一覧画面表示
-    public function index()
+    public function index(Request $request)
     {
+        // $searchにフォームのname(search)で送られてきた値を格納する
+        $search = $request->input('search');
         $products = Product::all();
+        $query = DB::table('products');
+        $query->select('id','product_name','price','stock','comment','img_path','company_id');
         return view('home',['products' => $products]);
     }
 

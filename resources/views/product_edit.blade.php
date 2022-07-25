@@ -67,7 +67,7 @@
 
                 <button type="submit">更新する</button>
             </form>
-            <a href="index">戻る</a>
+            <a href="{{ route('show',['id' => $product->id]) }}">戻る</a>
         </div>
     </div>
 </div>
