@@ -28,12 +28,20 @@ class ProductController extends Controller
     // 商品一覧画面表示
     public function index(Request $request)
     {
-        // $searchにフォームのname(search)で送られてきた値を格納する
+        // $searchにリクエストで持ってきた値を格納
         $search = $request->input('search');
-        $products = Product::all();
-        $query = DB::table('products');
-        $query->select('id','product_name','price','stock','comment','img_path','company_id');
-        return view('home',['products' => $products]);
+        $query = Product::query();
+
+        // もし$searchが空ではなかったら
+        if(!empty($search)) {
+            // whereメソッドのLIKE句でproduct_nameの中に%%内の文字列があるか検索をかける
+            $query->where('product_name', 'LIKE', "%{$search}%");
+        }
+
+        $products = $query->get();
+
+        // compact関数で変数をcontrollerからviewに渡すことができる
+        return view('home', compact('products','search'));
     }
 
     // 商品詳細画面表示
@@ -112,40 +120,25 @@ class ProductController extends Controller
 
 
 
-// try {
-//     DB::beginTransaction();
+// $products = Product::all();
+// // $searchにフォームのname(search)で送られてきた値を格納する
+// $search = $request->input('search');
+// // 検索フォーム
+// $query = DB::table('products');
+// // 不等価演算子「!==」で左右が等しくなければtrue
+// if($search !== null) {
+//     // 全角スペースを半角に「s」で全角から半角に
+//     $search_split = mb_convert_kana($search,'s');
+//     // 空白で区切る
+//     $search_split2 = preg_split('/[\s]+/',$search_split,-1,PREG_SPLIT_NO_EMPTY);
+//     // 単語をループで回す
+//     foreach($search_split2 as $value)
+//     {
+//         $query->where('product_name', 'LIKE', "%{$value}%");
+//     }
+// };
 
-//     User::create([
-//         'name'     => 'taro',
-//         'email'    => 'hoge1@example.com',
-//         'password' => 'password'
-//     ]);
-
-//     User::create([
-//         'name'     => 'hanako',
-//         'email'    => 'hoge2@example.com',
-//         'password' => 'password'
-//     ]);
-
-//     DB::commit();
-// } catch (Throwable $e) {
-//     DB::rollBack();
-// }
-
-
-
-//  // $productにProductモデルを渡している
-//  $product = new Product;
-//  // Productモデル内のカラムに = リクエストされた値を格納
-//  $product->product_name = $request->input('product_name');
-//  $product->price = $request->input('price');
-//  $product->stock = $request->input('stock');
-//  $product->comment = $request->input('comment');
-//  $product->img_path = $request->input('img_path');
-//  // $companyにCompanyモデルを渡している
-//  $company = new Company;
-//  // Companyモデル内のカラムに = リクエストされた値を格納
-//  $company->company_name = $request->input('company_name');
-
-
-//  return redirect('index');
+// $query->select('id','product_name','price','stock','comment','img_path','company_id');
+// $query->orderBy('created_at', 'asc');
+// $contacts = $query->paginate(20);
+// return view('home',['products' => $products], compact('contacts','search'));
