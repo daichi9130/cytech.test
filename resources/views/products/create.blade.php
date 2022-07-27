@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <p>商品新規登録</p>
+            <h1>商品新規登録</h1>
             <form method="POST" action="{{route('store')}}">
                 @csrf
 
@@ -12,6 +12,11 @@
                     <label>
                         商品名
                         <input type="text" name="product_name" value="">
+                        @if ($errors->has('product_name'))
+                            <div class="text-danger">
+                                {{$errors->first('product_name')}}
+                            </div>
+                        @endif
                     </label>
                 </div>
 
@@ -26,6 +31,11 @@
                             <option value="4">有限会社 高橋</option>
                             <option value="5">株式会社 山田</option>
                         </select>
+                        @if ($errors->has('company_id'))
+                            <div class="text-danger">
+                                {{ $errors->first('company_id') }}
+                            </div>
+                        @endif
                     </label>
                 </div>
 
@@ -33,6 +43,11 @@
                     <label>
                         価格
                         <input type="text" name="price" value="">
+                        @if ($errors->has('price'))
+                            <div class="text-danger">
+                                {{ $errors->first('price') }}
+                            </div>
+                        @endif
                     </label>
                 </div>
 
@@ -40,6 +55,11 @@
                     <label>
                         在庫数
                         <input type="text" name="stock" value="">
+                        @if ($errors->has('stock'))
+                            <div class="text-danger">
+                                {{ $errors->first('stock') }}
+                            </div>
+                        @endif
                     </label>
                 </div>
 

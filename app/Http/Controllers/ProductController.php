@@ -101,16 +101,10 @@ class ProductController extends Controller
     // 商品登録処理
     public function store(ProductRequest $request)
     {
+        $inputs = $request->all();
        \DB::beginTransaction();
        try {
-            Product::create([
-                'product_name' => $request->product_name,
-                'price' => $request->price,
-                'stock' => $request->stock,
-                'comment' => $request->comment,
-                'img_path' => $request->img_path,
-                'company_id' => $request->company_id
-        ]);
+           Product::create($inputs);
             DB::commit();
        } catch (Throwable $e) {
             abort(500);
@@ -152,3 +146,14 @@ class ProductController extends Controller
 // $query->orderBy('created_at', 'asc');
 // $contacts = $query->paginate(20);
 // return view('home',['products' => $products], compact('contacts','search'));
+
+
+
+// Product::create([
+//     'product_name' => $request->product_name,
+//     'price' => $request->price,
+//     'stock' => $request->stock,
+//     'comment' => $request->comment,
+//     'img_path' => $request->img_path,
+//     'company_id' => $request->company_id
+// ]);
