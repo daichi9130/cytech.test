@@ -16,7 +16,7 @@
                     <th style="width: 30%">コメント</th>
                 </tr>
                 <tr>
-                    <td>{{ $product->id }} </td>
+                    <td>{{ $product->id }}</td>
                     <td><img src="{{ asset('image/'.$product->img_path) }}" alt="写真" width="50" height="50"></td>
                     <td>{{ $product->product_name }}</td>
                     <td>{{ $product->price }}</td>

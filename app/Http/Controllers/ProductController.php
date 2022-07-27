@@ -35,6 +35,7 @@ class ProductController extends Controller
         $category = $request->input('category');
         $query = Product::query();
 
+        $query->select('products.id as product_id','products.price as product_price','products.stock as product_stock','products.img_path as product_img_path','products.product_name as name');
         $query->join('companies','products.company_id','=','companies.id');
         // もし$searchが空ではなかったら
         if(!empty($search)) {
@@ -50,21 +51,21 @@ class ProductController extends Controller
         $products = $query->get();
 
         // compact関数で変数をcontrollerからviewに渡すことができる
-        return view('home', compact('products','search','companies'));
+        return view('products/index', compact('products','search','companies'));
     }
 
     // 商品詳細画面表示
     public function show($id)
     {
         $product = Product::find($id);
-        return view('productshow',['product' => $product]);
+        return view('products/show',['product' => $product]);
     }
 
     // 商品編集画面表示
     public function edit($id)
     {
         $product = Product::find($id);
-        return view('product_edit',['product' => $product]);
+        return view('products/edit',['product' => $product]);
     }
 
     // 商品編集処理
@@ -94,7 +95,7 @@ class ProductController extends Controller
     // 商品登録画面表示
     public function create()
     {
-        return view('product_new');
+        return view('products/create');
     }
 
     // 商品登録処理
