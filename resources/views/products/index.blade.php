@@ -36,10 +36,10 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->product_price }}</td>
                     <td>{{ $product->product_stock }}</td>
-                    <td>{{ $product->company->company_name }}</td>
+                    <td>{{ $product->company['company_name'] }}</td>
                     <td><a href="show/{{ $product->product_id }}" class="btn btn-primary">詳細</a></td>
                     <td>
-                        <form method="POST" action="{{ route('destroy', $product->product_id) }}">
+                        <form method="POST" action="{{ route('destroy', $product->product_id) }}" onSubmit="return delete_alert()">
                         @csrf
                             <button type="submit" class="btn btn-danger">削除</button>
                         </form>

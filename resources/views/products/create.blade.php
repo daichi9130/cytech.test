@@ -11,7 +11,7 @@
                 <div>
                     <label>
                         商品名
-                        <input type="text" name="product_name" value="">
+                        <input type="text" name="product_name" value="{{ old('product_name') }}">
                         @if ($errors->has('product_name'))
                             <div class="text-danger">
                                 {{$errors->first('product_name')}}
@@ -24,7 +24,7 @@
                     <label>
                         メーカー
                         <select name="company_id">
-                            <option value>メーカー選択</option>
+                            <option value="{{ old('company_id') }}">メーカー選択</option>
                             <option value="1">有限会社 笹田</option>
                             <option value="2">有限会社 山岸</option>
                             <option value="3">株式会社 吉田</option>
@@ -42,7 +42,7 @@
                 <div>
                     <label>
                         価格
-                        <input type="text" name="price" value="">
+                        <input type="text" name="price" value="{{ old('price') }}">
                         @if ($errors->has('price'))
                             <div class="text-danger">
                                 {{ $errors->first('price') }}
@@ -54,7 +54,7 @@
                 <div>
                     <label>
                         在庫数
-                        <input type="text" name="stock" value="">
+                        <input type="text" name="stock" value="{{ old('stock') }}">
                         @if ($errors->has('stock'))
                             <div class="text-danger">
                                 {{ $errors->first('stock') }}
@@ -66,14 +66,14 @@
                 <div>
                     <label>
                         コメント
-                        <textarea name="comment" cols="30" rows="3" value=""></textarea>
+                        <textarea name="comment" cols="30" rows="3" value=>{{ old('comment') }}</textarea>
                     </label>
                 </div>
 
                 <div>
                     <label>
                         商品画像
-                        <input type="file" name="img_path" value="">
+                        <input type="file" name="img_path" value="{{ old('img_path') }}">
                     </label>
                 </div>
 
