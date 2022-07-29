@@ -28,27 +28,29 @@ class ProductController extends Controller
     // 商品一覧画面表示
     public function index(Request $request)
     {
-        // companyモデルのデータを全て取得
-        $companies = Company::all();
         // 検索フォームに入力された値を取得
         $search = $request->input('search');
+        // カテゴリが選択されたときの値を指定
         $category = $request->input('category');
+        
         $query = Product::query();
 
-        $query->select('products.id as product_id','products.price as product_price','products.stock as product_stock','products.img_path as product_img_path','products.product_name as name');
-        $query->join('companies','products.company_id','=','companies.id');
         // もし$searchが空ではなかったら
         if(!empty($search)) {
             // whereメソッドのLIKE句でproduct_nameの中に%%内の文字列があるか検索をかける
             $query->where('product_name', 'LIKE', "%{$search}%");
         }
-        if(!empty($category)) {
-            // whereメソッドのLIKE句でproduct_nameの中に%%内の文字列があるか検索をかける
-            $query->where('company_name', 'LIKE', $category);
+        if (isset($category)) {
+            $query->where('company_id', $category);
         }
 
+        $products = $query->orderBy('company_id', 'asc')->paginate(15);
         // $companies = $query->get();
-        $products = $query->get();
+        // $products = $query->get();
+
+        $company = new Company;
+        $companies = $company->getList();
+
 
         // compact関数で変数をcontrollerからviewに渡すことができる
         return view('products/index', compact('products','search','companies'));
