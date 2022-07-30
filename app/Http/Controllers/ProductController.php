@@ -45,9 +45,6 @@ class ProductController extends Controller
         }
 
         $products = $query->orderBy('company_id', 'asc')->paginate(15);
-        // $companies = $query->get();
-        // $products = $query->get();
-
         $company = new Company;
         $companies = $company->getList();
 
@@ -91,7 +88,7 @@ class ProductController extends Controller
                 abort(500);
                 DB::rollBack();
        }
-        return redirect('edit/{id}');
+        return redirect()->route('edit', ['id' => $product->id]);
     }
 
     // 商品登録画面表示

@@ -6,7 +6,6 @@
         <div class="col-md-12">
             <form method="GET" action="{{ route('index') }}" class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" name="search" type="search" placeholder="検索" aria-label="Search">
-
                 <select name="category" data-toggle="select">
                     <option value="">メーカー名</option>
                     @foreach ($companies as $id => $company_name)
@@ -31,7 +30,6 @@
                     <th style="width: 10%"></th>
                 </tr>
                 @foreach($products as $product)
-                
                 <tr>
                     <td>{{ $product->id }}</td>
                     <td><img src="{{ asset('image/'.$product->img_path) }}" alt="写真" width="50" height="50"></td>
