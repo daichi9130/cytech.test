@@ -19,6 +19,8 @@ Auth::routes();
 
 // 商品一覧画面を表示
 Route::get('index', 'ProductController@index')->name('index');
+// 商品一覧画面をjson表示する
+Route::get('apiList', 'ProductController@apiList')->name('api_list');
 // 商品詳細画面を表示
 Route::get('show/{id}', 'ProductController@show')->name('show');
 // 商品編集画面を表示

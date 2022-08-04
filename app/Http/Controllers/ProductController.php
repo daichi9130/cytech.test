@@ -32,14 +32,16 @@ class ProductController extends Controller
         $search = $request->input('search');
         // カテゴリが選択されたときの値を指定
         $category = $request->input('category');
-        
+
         $query = Product::query();
 
-        // もし$searchが空ではなかったら
+        // もし$searchが空ではなかったら emptyメソッドは変数の中身が空か確認する
         if(!empty($search)) {
             // whereメソッドのLIKE句でproduct_nameの中に%%内の文字列があるか検索をかける
-            $query->where('product_name', 'LIKE', "%{$search}%");
+            $query->where('product_name', 'LIKE', "%{$search}%")
+                  ->orWhere('price', 'LIKE', "%{$search}%" );
         }
+        // もし＄categoryに値が入っていたら issetメソッドで変数の中に値が入っているか確認する
         if (isset($category)) {
             $query->where('company_id', $category);
         }
@@ -48,9 +50,30 @@ class ProductController extends Controller
         $company = new Company;
         $companies = $company->getList();
 
-
         // compact関数で変数をcontrollerからviewに渡すことができる
         return view('products/index', compact('products','search','companies'));
+    }
+
+    public function apiList(ListRequest $request):JsonResponse
+    {
+        // 検索フォームに入力された値を取得
+        $search = $request->input('search');
+        // カテゴリが選択されたときの値を取得
+        $category = $request->input('category');
+
+        $query = Product::query();
+
+        // もし$searchがからではなかったら
+        if(!empty($search)){
+            // whereメソッドのLIKE句でproduct_nameの中に%%内の文字列があるか検索する
+            $query->where('product_name','LIKE',"%{$search}%");
+        }
+        if(isset($category)){
+            $query->where('company_id',$category);
+        }
+
+        $products = $query->orderBy('id', 'asc')->get();
+        return response()->json($products);
     }
 
     // 商品詳細画面表示
@@ -121,38 +144,3 @@ class ProductController extends Controller
     }
 }
 
-
-
-// $products = Product::all();
-// // $searchにフォームのname(search)で送られてきた値を格納する
-// $search = $request->input('search');
-// // 検索フォーム
-// $query = DB::table('products');
-// // 不等価演算子「!==」で左右が等しくなければtrue
-// if($search !== null) {
-//     // 全角スペースを半角に「s」で全角から半角に
-//     $search_split = mb_convert_kana($search,'s');
-//     // 空白で区切る
-//     $search_split2 = preg_split('/[\s]+/',$search_split,-1,PREG_SPLIT_NO_EMPTY);
-//     // 単語をループで回す
-//     foreach($search_split2 as $value)
-//     {
-//         $query->where('product_name', 'LIKE', "%{$value}%");
-//     }
-// };
-
-// $query->select('id','product_name','price','stock','comment','img_path','company_id');
-// $query->orderBy('created_at', 'asc');
-// $contacts = $query->paginate(20);
-// return view('home',['products' => $products], compact('contacts','search'));
-
-
-
-// Product::create([
-//     'product_name' => $request->product_name,
-//     'price' => $request->price,
-//     'stock' => $request->stock,
-//     'comment' => $request->comment,
-//     'img_path' => $request->img_path,
-//     'company_id' => $request->company_id
-// ]);
