@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Company;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
@@ -54,7 +55,8 @@ class ProductController extends Controller
         return view('products/index', compact('products','search','companies'));
     }
 
-    public function apiList(ListRequest $request):JsonResponse
+    // :JsonResponseは戻り値の定義
+    public function apiList(ProductRequest $request):JsonResponse
     {
         // 検索フォームに入力された値を取得
         $search = $request->input('search');
